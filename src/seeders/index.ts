@@ -12,7 +12,7 @@ export default class Seeders {
     await RoleRepo.seed();
     // await CategoryRepo.seed()
 
-    Logger.info("Initialized.")
+    console.log("Initialized.")
   }
 
 }

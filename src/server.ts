@@ -6,5 +6,5 @@ import Logger from "./core/Logger";
 import { server } from './socket';
 
 server
-  .listen(port, () => Logger.info(`server running on port : ${port}`))
-  .on('error', (e: any) => Logger.error(e));
+  .listen(port, () => console.log(`server running on port : ${port}`))
+  .on('error', (e: any) => console.log(e));

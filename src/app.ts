@@ -173,7 +173,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     ApiError.handle(err, res);
   } else {
     if (node_env === 'development') {
-      Logger.error(err);
+      console.log(err);
       return res.status(500).send(err.message);
     }
     ApiError.handle(new InternalError(), res);

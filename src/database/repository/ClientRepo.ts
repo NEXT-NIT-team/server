@@ -11,7 +11,6 @@ export default class ClientRepo {
   * */
 
   public static async create(client: Client): Promise<Client | any> {
-
     const client_ = await ClientModel.create(client);
     // populate and return
     return (await client_.execPopulate()).toObject()

@@ -27,7 +27,7 @@ export default class JWT {
     const key = await this.readPrivateKey();
     if (!key) throw new InternalError('Token generation failure');
     // @ts-ignore
-    return promisify(sign)({ ...payload }, { key, passphrase: JWT_PASSPHRASE }, { algorithm: 'RS256' });
+    return promisify(sign)({ ...payload }, JWT_PASSPHRASE);
   }
 
   /**
@@ -37,7 +37,7 @@ export default class JWT {
     const cert = await this.readPublicKey();
     try {
       // @ts-ignore
-      return (await promisify(verify)(token, cert)) as JwtPayload;
+      return (await promisify(verify)(token, JWT_PASSPHRASE)) as JwtPayload;
     } catch (e: any) {
       Logger.debug(e);
       if (e && e.name === 'TokenExpiredError') throw new TokenExpiredError();

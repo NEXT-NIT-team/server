@@ -42,14 +42,18 @@ export default {
           {
             is: RoleCode.CLIENT,
             then: Joi.object().keys({
-              isMale: Joi.boolean().required().default(true)
+              isMale: Joi.boolean().required().default(true),
+              height: Joi.number().required(),
+              weight: Joi.number().required()
             })
           },
           // restaurant-specific details
           {
             is: RoleCode.DOCTOR,
             then: Joi.object().keys({
-              
+              speciality: JoiObjectId().required(),
+              name: Joi.string().required().min(3),
+              description: Joi.string().required().min(10),
             })
           },
         ],

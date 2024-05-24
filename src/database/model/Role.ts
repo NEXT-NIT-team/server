@@ -2,8 +2,8 @@ import { Schema, model, Document } from 'mongoose';
 
 
 export enum RoleCode {
-  CLIENT = "CLIENT",
-  DOCTOR = "DOCTOR"
+  CLIENT = "Client",
+  DOCTOR = "Doctor"
 }
 
 export default interface Role extends Document {

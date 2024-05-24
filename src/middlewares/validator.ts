@@ -80,7 +80,7 @@ export default (schema: Joi.ObjectSchema, source: ValidationSource = ValidationS
       
       message.push(_message)
     })
-    // Logger.error(error);
+    // console.log(error);
 
     next(new BadRequestError(message[0]));
   } catch (error) {

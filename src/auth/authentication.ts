@@ -25,10 +25,14 @@ export const Authentification = async (accessToken: string | undefined) => {
     const payload = await JWT.validate(accessToken);
     validateTokenData(payload);
 
+
+    console.log(payload.sub);
+    
     const user = await UserRepo.findById(new Types.ObjectId(payload.sub));
     if (!user) throw new AuthFailureError(i18next.t("userNotRegistered"));
 
     const keystore = await KeystoreRepo.findforKey(user, payload.prm);
+    
     if (!keystore) throw new AuthFailureError(i18next.t("invalidAccessToken"));
 
     return { user, keystore, accessToken };

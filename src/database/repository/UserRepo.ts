@@ -200,9 +200,9 @@ export default class UserRepo {
     user.verified = true;
 
     const createdUser = await UserModel.create(user);
+    
     const keystore = await KeystoreRepo.create(createdUser._id, accessTokenKey, refreshTokenKey);
     return { user: createdUser.toObject(), keystore: keystore };
-
   }
 
   /**

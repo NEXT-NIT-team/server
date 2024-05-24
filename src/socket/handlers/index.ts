@@ -29,8 +29,8 @@ export default class SocketHandlersClass {
   public isAuthenticated(socket: any) {
     try {
 
-      Logger.info('isAuthenticated...')
-      Logger.info(socket.id)
+      console.log('isAuthenticated...')
+      console.log(socket.id)
 
       const user = this.users.find((u: any) => u.socketId == socket.id);
       if (!user) throw new ForbiddenError('User Unauthorized to use socket');
@@ -48,7 +48,7 @@ export default class SocketHandlersClass {
   public async subscribe({ token }: any, socket: any) {
 
     try {
-      Logger.info('Subscribing...')
+      console.log('Subscribing...')
       console.log("Subscribing...");
 
       const token_ = 'Bearer ' + token;

@@ -10,7 +10,7 @@ import Seeders from '../seeders';
  * */
 
 const dbURI = environment == ENVIRONEMENT.development
-  ? "mongodb://127.0.0.1:27017/easyeats"
+  ? `mongodb://127.0.0.1:27017/${db.name}`
   : `mongodb://${db.user}:${db.password}@${db.host}:27017/${db.name}?authSource=admin&w=1`;
 
 
@@ -35,11 +35,11 @@ const options = {
 mongoose
   .connect(dbURI, options)
   .then(() => {
-    Logger.info('Mongoose connection done');
+    console.log('Mongoose connection done');
   })
   .catch((e) => {
-    Logger.info('Mongoose connection error');
-    Logger.error(e);
+    console.log('Mongoose connection error');
+    console.log(e);
   });
 
 
@@ -48,23 +48,23 @@ const database = mongoose.connection;
 // CONNECTION EVENTS
 // When successfully connected
 database.on('connected', () => {
-  Logger.info('Mongoose default connection open');
+  console.log('Mongoose default connection open');
 });
 
 // If the connection throws an error
 database.on('error', (err) => {
-  Logger.error('Mongoose default connection error: ' + err);
+  console.log('Mongoose default connection error: ' + err);
 });
 
 // When the connection is disconnected
 database.on('disconnected', () => {
-  Logger.info('Mongoose default connection disconnected');
+  console.log('Mongoose default connection disconnected');
 });
 
 // If the Node process ends, close the Mongoose connection
 process.on('SIGINT', () => {
   mongoose.connection.close(() => {
-    Logger.info('Mongoose default connection disconnected through app termination');
+    console.log('Mongoose default connection disconnected through app termination');
     process.exit(0);
   });
 });

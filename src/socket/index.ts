@@ -28,7 +28,7 @@ export const SocketHandlers = new SocketHandlersClass();
       if (!isConnected) {
         SocketHandlers.users = SocketHandlers.users.filter(socketUser =>
           (socketUser.user._id !== user.user._id && socketUser.socketId !== user.socketId));
-        Logger.info("Disconnect user", `User "${user.user.name}" disconnected from the application`);
+        console.log("Disconnect user", `User "${user.user.name}" disconnected from the application`);
         console.log("Disconnect user", `User "${user.user.name}" disconnected from the application`);
       } else {
         console.log(`user: ${user.user.name} (${user.user.role}) | Connected: ${isConnected}`);
@@ -59,7 +59,7 @@ const onConnection = (socket: Socket) => {
       if (event !== 'subscribe') SocketHandlers.isAuthenticated(socket);
       next();
     } catch (error) {
-      Logger.info(error)
+      console.log(error)
       throw new ForbiddenError(i18next.t("userNotSubscribed"))
     }
   });

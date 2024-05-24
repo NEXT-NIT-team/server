@@ -69,6 +69,7 @@ router.post(
     const phone = await UserRepo.findByPhone(user.tel);
     const email = await UserRepo.findByEmail(user.email, req.role);
 
+    
     if (email) throw new AlreadyExistsError(req.t('EmailAlreadyUsed'));
     if (phone) throw new AlreadyExistsError(req.t('PhoneNumberAlreadyUsed'));
 
@@ -85,6 +86,9 @@ router.post(
       user: createdUser,
       ...default_preference,
     } as any);
+
+    console.log(keystore);
+    
 
     // update user
     await UserRepo.update(createdUser as User);

@@ -14,12 +14,12 @@ export default interface IClient extends User {
   weight: number
 }
 
-
 const schema = new Schema(
   {
     isMale: {
       type: Schema.Types.Boolean,
       default: true,
+      required: true
     },
     followed_doctors: [{
       type: Schema.Types.ObjectId,

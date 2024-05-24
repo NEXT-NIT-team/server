@@ -32,15 +32,15 @@ export const createTokens = async (
   accessTokenKey: string,
   refreshTokenKey: string,
 ): Promise<Tokens> => {
-  const accessToken = await JWT.encode(
-    new JwtPayload(
-      TOKEN_INFO.issuer,
-      TOKEN_INFO.audience,
-      user._id.toString(),
-      accessTokenKey,
-      TOKEN_INFO.accessTokenValidityDays,
-    ),
-  );
+
+
+  const accessToken = await JWT.encode(new JwtPayload(
+    TOKEN_INFO.issuer,
+    TOKEN_INFO.audience,
+    user._id.toString(),
+    accessTokenKey,
+    TOKEN_INFO.accessTokenValidityDays,
+  ));
 
   if (!accessToken) throw new InternalError();
 
@@ -60,4 +60,5 @@ export const createTokens = async (
     accessToken: accessToken,
     refreshToken: refreshToken,
   } as Tokens;
+
 };
